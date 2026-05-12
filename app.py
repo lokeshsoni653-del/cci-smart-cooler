@@ -63,8 +63,10 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # 3. Header Section
+# 3. Header Section
 st.title("🥤 CCI Retail Execution: Smart Cooler Vision AI")
 st.markdown("**BETA PoC:** Simulated Computer Vision for 'Share of Cooler' (SOC) & Asset Purity")
+st.markdown("### 👨‍💻 Architected & Developed by Lokesh Kumar")
 st.markdown("---")
 
 # 4. Sidebar: Field Representative Data
