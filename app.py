@@ -1,63 +1,21 @@
 import streamlit as st
 import time
-import random
 import pandas as pd
 
 # 1. Page Configuration
 st.set_page_config(page_title="CCI Smart Cooler AI", page_icon="🥤", layout="wide")
 
-# 2. Coca-Cola Custom Branding (Red & White)
+# 2. Coca-Cola Custom Branding
 st.markdown("""
     <style>
-    /* Force main app background to clean white */
-    .stApp { 
-        background-color: #FFFFFF !important; 
-    }
-    
-    /* Make headers Coca-Cola Red */
-    h1, h2, h3 { 
-        color: #F40009 !important; 
-        font-family: 'Arial Black', sans-serif !important; 
-    }
-    
-    /* Ensure regular text is dark grey/black for readability */
-    p, label { 
-        color: #1A1A1A !important; 
-    }
-
-    /* Style the metric numbers to be Red */
-    div[data-testid="stMetricValue"] > div {
-        color: #F40009 !important; 
-    }
-    
-    /* Style metric labels to be bold and dark */
-    div[data-testid="stMetricLabel"] > div > div > p {
-        color: #333333 !important;
-        font-weight: bold !important;
-    }
-
-    /* Primary button styling */
-    .stButton>button { 
-        background-color: #F40009 !important; 
-        color: #FFFFFF !important; 
-        font-weight: bold !important; 
-        border-radius: 8px !important; 
-        border: none !important;
-    }
-    .stButton>button:hover { 
-        background-color: #aa0000 !important; 
-        color: #FFFFFF !important; 
-    }
-
-    /* Sidebar styling to a light, professional grey */
-    [data-testid="stSidebar"] {
-        background-color: #F8F9FA !important;
-    }
-    
-    /* Info/Warning box text colors */
-    .stAlert p {
-        color: #000000 !important;
-    }
+    .stApp { background-color: #FFFFFF !important; }
+    h1, h2, h3 { color: #F40009 !important; font-family: 'Arial Black', sans-serif !important; }
+    p, label { color: #1A1A1A !important; }
+    div[data-testid="stMetricValue"] > div { color: #F40009 !important; }
+    div[data-testid="stMetricLabel"] > div > div > p { color: #333333 !important; font-weight: bold !important; }
+    .stButton>button { background-color: #F40009 !important; color: #FFFFFF !important; font-weight: bold !important; border-radius: 8px !important; border: none !important; width: 100%; }
+    .stButton>button:hover { background-color: #aa0000 !important; color: #FFFFFF !important; }
+    [data-testid="stSidebar"] { background-color: #F8F9FA !important; }
     </style>
 """, unsafe_allow_html=True)
 
@@ -79,54 +37,47 @@ st.write(f"**Current Outlet:** {outlet} | **Region:** {region}")
 uploaded_file = st.file_uploader("📸 Upload Cooler Image from Field", type=["jpg", "jpeg", "png"])
 
 if uploaded_file is not None:
-    # Display the uploaded image
-    col_img, col_data = st.columns([1, 1])
+    col_img, col_data = st.columns([1, 1.2])
     
     with col_img:
         st.image(uploaded_file, caption=f"Live Feed: {outlet}", use_container_width=True)
         
     with col_data:
-        st.write("### AI Analysis Engine")
-        if st.button("🔍 Run Cooler Vision AI Scan"):
-            with st.spinner("Initializing neural network... detecting SKUs..."):
-                time.sleep(2.5) # Simulate the time it takes for AI to process the image
+        st.write("### 🧠 AI Analysis Engine")
+        if st.button("🔍 Run Full Image Segmentation Scan"):
+            with st.spinner("Scanning image... identifying SKUs... mapping bounding boxes..."):
+                time.sleep(2)
                 
-            st.success("✅ Scan Complete! Analyzing Share of Cooler (SOC)...")
+            st.success("✅ Neural Network Scan Complete!")
             
-            # Mock Data Generation (Simulating a highly accurate AI for Demo)
-            coke_facings = random.randint(85, 95)
-            comp_facings = random.randint(0, 3)
-            empty_slots = random.randint(2, 5)
-            total_inventory = coke_facings + comp_facings
+            # Advanced Mock Data for Demo Purposes
+            coke_portfolio = 88
+            pepsi_portfolio = 4
+            empty_slots = 8
+            soc = (coke_portfolio / (coke_portfolio + pepsi_portfolio)) * 100
             
-            # Formula for Share of Cooler
-            soc = (coke_facings / total_inventory) * 100
-            
-            # Display Key Metrics
+            # Top Level Metric Progress Bar
+            st.markdown(f"#### 📊 Overall Share of Cooler (SOC): {soc:.1f}%")
+            st.progress(int(soc)/100)
             st.write("---")
-            m1, m2 = st.columns(2)
-            m1.metric("Coca-Cola SKUs", coke_facings)
-            m2.metric("Competitor SKUs", comp_facings)
             
-            m3, m4 = st.columns(2)
-            m3.metric("Empty Slots", empty_slots)
-            m4.metric("Share of Cooler (SOC)", f"{soc:.1f}%")
+            # Detailed Metrics
+            m1, m2, m3 = st.columns(3)
+            m1.metric("🔴 CCI Portfolio", f"{coke_portfolio} units")
+            m2.metric("🔵 Competitor", f"{pepsi_portfolio} units")
+            m3.metric("⚪ Empty Slots", f"{empty_slots} slots")
             
-            # Actionable Insights based on CCI Standards
-            st.markdown("### 📊 Retail Compliance Report")
+            # Actionable Insights
+            st.write("---")
             if soc >= 80:
-                st.info("🟢 **PASS:** Cooler meets the 80% minimum Coca-Cola SOC standard. Asset is pure.")
+                st.info("🟢 **STATUS PASS:** Cooler meets the 80% minimum Coca-Cola SOC standard. Asset is compliant.")
             else:
-                st.error("🔴 **FAIL:** Cooler is below 80% SOC. Competitor infiltration detected. Issue warning to retailer.")
+                st.error("🔴 **STATUS FAIL:** Cooler is below 80% SOC. Competitor infiltration detected.")
                 
-            if empty_slots > 10:
-                st.warning("⚠️ **RESTOCK ALERT:** High number of empty slots. Flagging for Secondary Distribution truck dispatch.")
-            
-            # Visual Charting
-            st.write("---")
-            st.write("**Cooler Allocation Breakdown**")
-            chart_data = pd.DataFrame(
-                {"Categories": ["Coca-Cola", "Competitors", "Empty Slots"],
-                 "Facings": [coke_facings, comp_facings, empty_slots]}
-            )
-            st.bar_chart(chart_data.set_index("Categories"), color="#F40009")
+            # Advanced Charting
+            st.write("**Detailed SKU Breakdown Analysis**")
+            chart_data = pd.DataFrame({
+                "Brand Category": ["Coca-Cola Classic", "Sprite", "Fanta", "Competitor Brands", "Empty"],
+                "Detected Units": [45, 25, 18, pepsi_portfolio, empty_slots]
+            })
+            st.bar_chart(chart_data.set_index("Brand Category"), color="#F40009")
