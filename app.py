@@ -96,10 +96,10 @@ if uploaded_file is not None:
             st.success("✅ Scan Complete! Analyzing Share of Cooler (SOC)...")
             
             # Mock Data Generation (Simulating an AI response)
-            coke_facings = random.randint(45, 75)
-            comp_facings = random.randint(5, 25)
-            empty_slots = random.randint(0, 15)
-            total_inventory = coke_facings + comp_facings
+            # Mock Data Generation (Simulating a highly accurate AI for Demo)
+            coke_facings = random.randint(85, 95)
+            comp_facings = random.randint(0, 3)
+            empty_slots = random.randint(2, 5)
             
             # Formula for Share of Cooler
             soc = (coke_facings / total_inventory) * 100
