@@ -7,13 +7,58 @@ import pandas as pd
 st.set_page_config(page_title="CCI Smart Cooler AI", page_icon="🥤", layout="wide")
 
 # 2. Coca-Cola Custom Branding (Red & White)
+# 2. Coca-Cola Custom Branding (Red & White)
 st.markdown("""
     <style>
-    .stApp { background-color: #fff; }
-    h1, h2, h3 { color: #F40009; font-family: 'Arial Black', sans-serif; }
-    .stButton>button { background-color: #F4009; color: white; font-weight: bold; border-radius: 8px; }
-    .stButton>button:hover { background-color: #aa0; color: grey; }
-    div[data-testid="stMetricValue"] { color: #F40009; }
+    /* Force main app background to clean white */
+    .stApp { 
+        background-color: #FFFFFF !important; 
+    }
+    
+    /* Make headers Coca-Cola Red */
+    h1, h2, h3 { 
+        color: #F40009 !important; 
+        font-family: 'Arial Black', sans-serif !important; 
+    }
+    
+    /* Ensure regular text is dark grey/black for readability */
+    p, label { 
+        color: #1A1A1A !important; 
+    }
+
+    /* Style the metric numbers to be Red */
+    div[data-testid="stMetricValue"] > div {
+        color: #F40009 !important; 
+    }
+    
+    /* Style metric labels to be bold and dark */
+    div[data-testid="stMetricLabel"] > div > div > p {
+        color: #333333 !important;
+        font-weight: bold !important;
+    }
+
+    /* Primary button styling */
+    .stButton>button { 
+        background-color: #F40009 !important; 
+        color: #FFFFFF !important; 
+        font-weight: bold !important; 
+        border-radius: 8px !important; 
+        border: none !important;
+    }
+    .stButton>button:hover { 
+        background-color: #aa0000 !important; 
+        color: #FFFFFF !important; 
+    }
+
+    /* Sidebar styling to a light, professional grey */
+    [data-testid="stSidebar"] {
+        background-color: #F8F9FA !important;
+    }
+    
+    /* Info/Warning box text colors */
+    .stAlert p {
+        color: #000000 !important;
+    }
     </style>
 """, unsafe_allow_html=True)
 
