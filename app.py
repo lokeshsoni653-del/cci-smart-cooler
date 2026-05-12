@@ -9,9 +9,9 @@ st.set_page_config(page_title="CCI Smart Cooler AI", page_icon="🥤", layout="w
 # 2. Coca-Cola Custom Branding (Red & White)
 st.markdown("""
     <style>
-    .stApp { background-color: #ffffff; }
+    .stApp { background-color: #fff; }
     h1, h2, h3 { color: #F40009; font-family: 'Arial Black', sans-serif; }
-    .stButton>button { background-color: #F40009; color: white; font-weight: bold; border-radius: 8px; }
+    .stButton>button { background-color: #F4009; color: white; font-weight: bold; border-radius: 8px; }
     .stButton>button:hover { background-color: #aa0; color: grey; }
     div[data-testid="stMetricValue"] { color: #F40009; }
     </style>
