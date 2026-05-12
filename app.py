@@ -12,7 +12,7 @@ st.markdown("""
     .stApp { background-color: #ffffff; }
     h1, h2, h3 { color: #F40009; font-family: 'Arial Black', sans-serif; }
     .stButton>button { background-color: #F40009; color: white; font-weight: bold; border-radius: 8px; }
-    .stButton>button:hover { background-color: #aa0000; color: white; }
+    .stButton>button:hover { background-color: #aa0000; color: grey; }
     div[data-testid="stMetricValue"] { color: #F40009; }
     </style>
 """, unsafe_allow_html=True)
