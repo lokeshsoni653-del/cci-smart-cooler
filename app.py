@@ -7,7 +7,6 @@ import pandas as pd
 st.set_page_config(page_title="CCI Smart Cooler AI", page_icon="🥤", layout="wide")
 
 # 2. Coca-Cola Custom Branding (Red & White)
-# 2. Coca-Cola Custom Branding (Red & White)
 st.markdown("""
     <style>
     /* Force main app background to clean white */
@@ -63,7 +62,6 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # 3. Header Section
-# 3. Header Section
 st.title("🥤 CCI Retail Execution: Smart Cooler Vision AI")
 st.markdown("**BETA PoC:** Simulated Computer Vision for 'Share of Cooler' (SOC) & Asset Purity")
 st.markdown("### 👨‍💻 Architected & Developed by Lokesh Kumar")
@@ -95,11 +93,11 @@ if uploaded_file is not None:
                 
             st.success("✅ Scan Complete! Analyzing Share of Cooler (SOC)...")
             
-            # Mock Data Generation (Simulating an AI response)
             # Mock Data Generation (Simulating a highly accurate AI for Demo)
             coke_facings = random.randint(85, 95)
             comp_facings = random.randint(0, 3)
             empty_slots = random.randint(2, 5)
+            total_inventory = coke_facings + comp_facings
             
             # Formula for Share of Cooler
             soc = (coke_facings / total_inventory) * 100
